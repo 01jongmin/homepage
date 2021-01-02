@@ -79,6 +79,8 @@ const HeaderLinks = styled("div")`
 `;
 
 export default function Header() {
+  const isBrowser = typeof window !== `undefined`;
+
   return (
     <HeaderContainer>
       <HeaderContent>
@@ -86,7 +88,9 @@ export default function Header() {
           <div className={style.logo}>
             <>
               <span className={style.mark}>{">"}</span>
-              <span className={style.text}>{window.location.pathname}</span>
+              <span className={style.text}>
+                {isBrowser ? window.location.pathname : ""}
+              </span>
               <span className={style.cursor} />
             </>
           </div>
