@@ -1,150 +1,222 @@
-import * as React from "react"
+import React from "react";
+import Helmet from "react-helmet";
+import { graphql, Link } from "gatsby";
+import styled from "@emotion/styled";
+import colors from "styles/colors";
+import dimensions from "styles/dimensions";
+import Button from "components/_ui/Button";
+//import About from "components/About";
+import Layout from "../components/Layout";
+//import ProjectCard from "components/ProjectCard";
+import Header from "components/Header";
+import Footer from "components/Footer";
+import styles from "styles/typography";
 
-// styles
-const pageStyles = {
-  color: "#232129",
-  padding: "96px",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
-const headingAccentStyles = {
-  color: "#663399",
-}
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
-const listStyles = {
-  marginBottom: 96,
-  paddingLeft: 0,
-}
-const listItemStyles = {
-  fontWeight: "300",
-  fontSize: "24px",
-  maxWidth: "560px",
-}
+const Hero = styled("div")`
+  padding-top: 2.5em;
+  padding-bottom: 3em;
+  margin-bottom: 6em;
+  max-width: 850px;
 
-const linkStyle = {
-  color: "#8954A8",
-  fontWeight: "bold",
-  fontSize: "16px",
-  verticalAlign: "5%",
-}
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    margin-bottom: 3em;
+  }
 
-const docLinkStyle = {
-  ...linkStyle,
-  listStyleType: "none",
-  marginBottom: 24,
-}
+  h1 {
+    margin-bottom: 1em;
 
-const descriptionStyle = {
-  color: "#232129",
-  fontSize: "14px",
-}
+    a {
+      text-decoration: none;
+      transition: all 100ms ease-in-out;
 
-const docLink = {
-  text: "Documentation",
-  url: "https://www.gatsbyjs.com/docs/",
-  color: "#8954A8",
-}
-// data
-const links = [
+      &:nth-of-type(1) {
+        color: ${colors.blue500};
+      }
+      &:nth-of-type(2) {
+        color: ${colors.orange500};
+      }
+      &:nth-of-type(3) {
+        color: ${colors.purple500};
+      }
+      &:nth-of-type(4) {
+        color: ${colors.green500};
+      }
+      &:nth-of-type(5) {
+        color: ${colors.teal500};
+      }
+
+      &:hover {
+        cursor: pointer;
+        transition: all 100ms ease-in-out;
+
+        &:nth-of-type(1) {
+          color: ${colors.blue600};
+          background-color: ${colors.blue200};
+        }
+        &:nth-of-type(2) {
+          color: ${colors.orange600};
+          background-color: ${colors.orange200};
+        }
+        &:nth-of-type(3) {
+          color: ${colors.purple600};
+          background-color: ${colors.purple200};
+        }
+        &:nth-of-type(4) {
+          color: ${colors.green600};
+          background-color: ${colors.green200};
+        }
+        &:nth-of-type(5) {
+          color: ${colors.teal600};
+          background-color: ${colors.teal200};
+        }
+      }
+    }
+  }
+`;
+
+const Section = styled("div")`
+  margin-bottom: 10em;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: ${dimensions.maxwidthTablet}px) {
+    margin-bottom: 4em;
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+`;
+
+const WorkAction = styled(Link)`
+  font-weight: 600;
+  text-decoration: none;
+  color: currentColor;
+  transition: all 150ms ease-in-out;
+  margin-left: auto;
+
+  @media (max-width: ${dimensions.maxwidthTablet}px) {
+    margin: 0 auto;
+  }
+
+  span {
+    margin-left: 1em;
+    transform: translateX(-8px);
+    display: inline-block;
+    transition: transform 400ms ease-in-out;
+  }
+
+  &:hover {
+    color: ${colors.blue500};
+    transition: all 150ms ease-in-out;
+
+    span {
+      transform: translateX(0px);
+      opacity: 1;
+      transition: transform 150ms ease-in-out;
+    }
+  }
+`;
+
+const RenderBody = ({ home, meta }) => (
+  <>
+    <Helmet
+      title={meta.title}
+      titleTemplate={`%s | ${meta.title}`}
+      meta={[
+        {
+          name: `description`,
+          content: meta.description,
+        },
+        {
+          property: `og:title`,
+          content: meta.title,
+        },
+        {
+          property: `og:description`,
+          content: meta.description,
+        },
+        {
+          property: `og:type`,
+          content: `website`,
+        },
+        {
+          name: `twitter:card`,
+          content: `summary`,
+        },
+        {
+          name: `twitter:creator`,
+          content: meta.author,
+        },
+        {
+          name: `twitter:title`,
+          content: meta.title,
+        },
+        {
+          name: `twitter:description`,
+          content: meta.description,
+        },
+      ].concat(meta)}
+    />
+    <Hero>
+      <div>
+        <h1>👋 Hi, I'm Jong Min </h1>
+        <h1>
+          <div>
+            📚 I am a sophomore at the{" "}
+            <a href="https://upenn.edu/" target="_blank" rel="noopener">
+              University of Pennsylvania
+            </a>{" "}
+            as part of the{" "}
+            <a
+              href="https://fisher.wharton.upenn.edu/"
+              target="_blank"
+              rel="noopener"
+            >
+              M&T
+            </a>{" "}
+            dual-degree program majoring in{" "}
+            <a href="https://www.cis.upenn.edu/" target="_blank" rel="noopener">
+              Computer Science
+            </a>{" "}
+            from Penn Engineering and{" "}
+            <a
+              href="https://mgmt.wharton.upenn.edu/"
+              target="_blank"
+              rel="noopener"
+            >
+              Management
+            </a>{" "}
+            from the Wharton School
+          </div>
+        </h1>
+        <h1>
+          🖥 I aspire to use technology to build products that solve problems
+        </h1>
+      </div>
+    </Hero>
+  </>
+);
+
+export default ({ data }) => {
+  //Required check for no data being returned
+  //const doc = data.prismic.allHomepages.edges.slice(0, 1).pop();
+  //const projects = data.prismic.allProjects.edges;
+  const meta = data.site.siteMetadata;
+
+  //if (!doc || !projects) return null;
+
+  return <Layout>{<RenderBody meta={meta} />}</Layout>;
+};
+
+export const query = graphql`
   {
-    text: "Tutorial",
-    url: "https://www.gatsbyjs.com/docs/tutorial/",
-    description:
-      "A great place to get started if you're new to web development. Designed to guide you through setting up your first Gatsby site.",
-    color: "#E95800",
-  },
-  {
-    text: "How to Guides",
-    url: "https://www.gatsbyjs.com/docs/how-to/",
-    description:
-      "Practical step-by-step guides to help you achieve a specific goal. Most useful when you're trying to get something done.",
-    color: "#1099A8",
-  },
-  {
-    text: "Reference Guides",
-    url: "https://www.gatsbyjs.com/docs/reference/",
-    description:
-      "Nitty-gritty technical descriptions of how Gatsby works. Most useful when you need detailed information about Gatsby's APIs.",
-    color: "#BC027F",
-  },
-  {
-    text: "Conceptual Guides",
-    url: "https://www.gatsbyjs.com/docs/conceptual/",
-    description:
-      "Big-picture explanations of higher-level Gatsby concepts. Most useful for building understanding of a particular topic.",
-    color: "#0D96F2",
-  },
-  {
-    text: "Plugin Library",
-    url: "https://www.gatsbyjs.com/plugins",
-    description:
-      "Add functionality and customize your Gatsby site or app with thousands of plugins built by our amazing developer community.",
-    color: "#000000",
-  },
-]
-
-// markup
-const IndexPage = () => {
-  return (
-    <main style={pageStyles}>
-      <title>Home Page</title>
-      <h1 style={headingStyles}>
-        Congratulations
-        <br />
-        <span style={headingAccentStyles}>— you just made a Gatsby site! </span>
-        <span role="img" aria-label="Party popper emojis">
-          🎉🎉🎉
-        </span>
-      </h1>
-      <p style={paragraphStyles}>
-        Edit <code style={codeStyles}>src/pages/index.js</code> to see this page
-        update in real-time.{" "}
-        <span role="img" aria-label="Sunglasses smiley emoji">
-          😎
-        </span>
-      </p>
-      <ul style={listStyles}>
-        <li style={docLinkStyle}>
-          <a
-            style={linkStyle}
-            href={`${docLink.url}?utm_source=starter&utm_medium=start-page&utm_campaign=minimal-starter`}
-          >
-            {docLink.text}
-          </a>
-        </li>
-        {links.map(link => (
-          <li style={{ ...listItemStyles, color: link.color }}>
-            <span>
-              <a
-                style={linkStyle}
-                href={`${link.url}?utm_source=starter&utm_medium=start-page&utm_campaign=minimal-starter`}
-              >
-                {link.text}
-              </a>
-              <p style={descriptionStyle}>{link.description}</p>
-            </span>
-          </li>
-        ))}
-      </ul>
-      <img
-        alt="Gatsby G Logo"
-        src="data:image/svg+xml,%3Csvg width='24' height='24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2a10 10 0 110 20 10 10 0 010-20zm0 2c-3.73 0-6.86 2.55-7.75 6L14 19.75c3.45-.89 6-4.02 6-7.75h-5.25v1.5h3.45a6.37 6.37 0 01-3.89 4.44L6.06 9.69C7 7.31 9.3 5.63 12 5.63c2.13 0 4 1.04 5.18 2.65l1.23-1.06A7.959 7.959 0 0012 4zm-8 8a8 8 0 008 8c.04 0 .09 0-8-8z' fill='%23639'/%3E%3C/svg%3E"
-      />
-    </main>
-  )
-}
-
-export default IndexPage
+    site {
+      siteMetadata {
+        title
+        description
+        author
+      }
+    }
+  }
+`;

@@ -1,13 +1,16 @@
 module.exports = {
   siteMetadata: {
     title: "My Gatsby Site",
+    description: `A starter powered by Gatsby and Prismic to showcase portfolios and blogs.`,
+    author: `Jong Min Choi`,  
   },
   plugins: [
+    "gatsby-plugin-sass",
     "gatsby-plugin-emotion",
     {
       resolve: "gatsby-plugin-google-analytics",
       options: {
-        trackingId: "",
+        trackingId: "UA-173634546-1",
       },
     },
     "gatsby-plugin-sharp",
@@ -38,5 +41,6 @@ module.exports = {
       },
       __key: "pages",
     },
+    "gatsby-plugin-resolve-src",
   ],
 };
