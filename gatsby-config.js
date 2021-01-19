@@ -4,7 +4,7 @@ module.exports = {
     titleTemplate: "%s - Jong Min Choi",
     description: `Jong Min Choi's Homepage`,
     author: `Jong Min Choi`,
-    url: `https://www.jongmin.space`,
+    siteUrl: `https://www.jongmin.space`,
     twitterUsername: "@01jongmin",
   },
   plugins: [
