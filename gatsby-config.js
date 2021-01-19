@@ -1,9 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: "My Gatsby Site",
-    description: `A starter powered by Gatsby and Prismic to showcase portfolios and blogs.`,
+    title: "Home",
+    titleTemplate: "%s - Jong Min Choi",
+    description: `Jong Min Choi's Homepage`,
     author: `Jong Min Choi`,
-    siteUrl: `https://www.jongmin.space`,
+    url: `https://www.jongmin.space`,
+    twitterUsername: "@01jongmin",
   },
   plugins: [
     "gatsby-plugin-sass",

@@ -1,19 +1,16 @@
 import React from "react";
 import { StaticQuery, graphql } from "gatsby";
-import styled from "@emotion/styled";
 import { Global } from "@emotion/react";
+import styled from "@emotion/styled";
 import globalStyles from "styles/global";
 import typeStyles from "styles/typography";
 import dimensions from "styles/dimensions";
-import Footer from "components/Footer";
 import Header from "components/Header";
 import "styles/fonts.scss";
 
 const LayoutContainer = styled.div`
-  max-width: ${dimensions.maxwidthDesktop}px;
   padding-left: ${dimensions.paddingHorizontalDesktop}em;
   padding-right: ${dimensions.paddingHorizontalDesktop}em;
-  margin: 0 auto;
 
   @media (max-width: ${dimensions.maxwidthTablet}px) {
     padding-left: ${dimensions.paddingHorizontalTablet}em;
@@ -27,6 +24,9 @@ const LayoutContainer = styled.div`
 
   .Layout__content {
     padding-bottom: 5em;
+    margin: auto;
+    text-align: center;
+    max-width: 1000px;
   }
 `;
 
@@ -42,13 +42,11 @@ export default function Layout({ children }) {
           }
         }
       `}
-      render={(data) => (
+      render={() => (
         <LayoutContainer className="div">
           <Global styles={[globalStyles, typeStyles]} />
-          <div className="Layout">
-            <Header />
-            <main className="Layout__content">{children}</main>
-          </div>
+          <Header />
+          <main className="Layout__content">{children}</main>
         </LayoutContainer>
       )}
     />

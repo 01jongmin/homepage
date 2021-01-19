@@ -1,14 +1,13 @@
 import React from "react";
+import { useLocation } from "@reach/router";
 import { Link } from "gatsby";
 import styled from "@emotion/styled";
 import colors from "../styles/colors";
 import dimensions from "../styles/dimensions";
-import Logo from "./_ui/Logo";
-import style from "styles/header.module.css";
 
 const HeaderContainer = styled("div")`
-  padding-top: 3.75em;
-  padding-bottom: 3em;
+  padding-top: 1.75em;
+  padding-bottom: 1em;
 `;
 
 const HeaderContent = styled("div")`
@@ -16,8 +15,15 @@ const HeaderContent = styled("div")`
   justify-content: space-between;
 
   a {
-    text-decoration: none;
     color: currentColor;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+    font-weight: 400;
+    font-size: 1em;
+    height: 100%;
+    padding-bottom: 1.25em;
+    display: block;
+    position: relative;
   }
 `;
 
@@ -38,16 +44,7 @@ const HeaderLinks = styled("div")`
   }
 
   a {
-    color: currentColor;
-    text-decoration: none;
     border-bottom: 3px solid transparent;
-    font-weight: 600;
-    font-size: 0.95em;
-    height: 100%;
-    padding-bottom: 1.25em;
-    padding-top: 0.25em;
-    display: block;
-    position: relative;
 
     &:after {
       position: absolute;
@@ -79,28 +76,20 @@ const HeaderLinks = styled("div")`
 `;
 
 export default function Header() {
-  const isBrowser = typeof window !== `undefined`;
+  const { pathname } = useLocation();
 
   return (
     <HeaderContainer>
       <HeaderContent>
-        <Link to="/">
-          <div className={style.logo}>
-            <>
-              <span className={style.mark}>{">"}</span>
-              <span className={style.text}>
-                {isBrowser ? window.location.pathname : ""}
-              </span>
-              <span className={style.cursor} />
-            </>
-          </div>
+        <Link to="/" style={{ fontWeight: 600 }}>
+          {"> ~"} {pathname}
         </Link>
         <HeaderLinks>
           <Link activeClassName="Link--is-active" to="/work">
             Work
           </Link>
-          <Link activeClassName="Link--is-active" to="/blog">
-            Blog
+          <Link activeClassName="Link--is-active" to="/courses">
+            Courses
           </Link>
         </HeaderLinks>
       </HeaderContent>

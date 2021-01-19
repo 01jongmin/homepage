@@ -3,16 +3,13 @@ import Helmet from "react-helmet";
 import { graphql } from "gatsby";
 import styled from "@emotion/styled";
 import Layout from "components/Layout";
-import ProjectCard from "components/ProjectCard";
+import Nested from "components/NestedList";
+//import ProjectCard from "components/ProjectCard";
 
-const WorkTitle = styled("h1")`
-  margin-bottom: 1em;
-`;
-
-const Work = ({ projects, meta }) => (
+const Course = ({ projects, meta }) => (
   <>
     <Helmet
-      title={`Work`}
+      title={`Courses`}
       titleTemplate={`%s`}
       meta={[
         {
@@ -21,7 +18,7 @@ const Work = ({ projects, meta }) => (
         },
         {
           property: `og:title`,
-          content: `Work`,
+          content: `Work | Prist, Gatsby & Prismic Starter`,
         },
         {
           property: `og:description`,
@@ -50,18 +47,15 @@ const Work = ({ projects, meta }) => (
       ].concat(meta)}
     />
     <Layout>
-      <>
-        <ProjectCard
-          category={"Project Category"}
-          title={"Project Title"}
-          description={"A project"}
-          thumbnail={{
-            url:
-              "https://upload.wikimedia.org/wikipedia/commons/4/41/Sunflower_from_Silesia2.jpg",
-          }}
-          uid={"Test"}
-        />
-      </>
+      <div style={{ textAlign: "left" }}>
+        <p>Below are the coursework I have taken during my time at Penn</p>
+        <ul>
+          <li> Test1 </li>
+          <li> Test2 </li>
+        </ul>
+      </div>
+
+      <Nested />
     </Layout>
   </>
 );
@@ -69,7 +63,7 @@ const Work = ({ projects, meta }) => (
 export default ({ data }) => {
   const meta = data.site.siteMetadata;
 
-  return <Work meta={meta} />;
+  return <Course meta={meta} />;
 };
 
 export const query = graphql`

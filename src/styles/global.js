@@ -26,11 +26,6 @@ const globalStyles = css`
 
     * {
       box-sizing: border-box;
-
-      &::selection {
-        background: ${colors.orange500};
-        color: white;
-      }
     }
   }
 

@@ -1,128 +1,64 @@
 import React from "react";
 import Helmet from "react-helmet";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import styled from "@emotion/styled";
-import colors from "styles/colors";
-import dimensions from "styles/dimensions";
-import Button from "components/_ui/Button";
-//import About from "components/About";
 import Layout from "../components/Layout";
-//import ProjectCard from "components/ProjectCard";
-import Header from "components/Header";
-import Footer from "components/Footer";
-import styles from "styles/typography";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 
 const Hero = styled("div")`
+  margin: auto;
+  text-align: center;
   padding-top: 2.5em;
-  padding-bottom: 3em;
-  margin-bottom: 6em;
-  max-width: 850px;
-
-  @media (max-width: ${dimensions.maxwidthMobile}px) {
-    margin-bottom: 3em;
-  }
+  padding-bottom: 1rem;
 
   h1 {
-    margin-bottom: 1em;
+    font-weight: 400;
+  }
 
-    a {
-      text-decoration: none;
-      transition: all 100ms ease-in-out;
+  h3 {
+    font-size: 1em;
+    font-weight: 300;
+  }
 
-      &:nth-of-type(1) {
-        color: ${colors.blue500};
-      }
-      &:nth-of-type(2) {
-        color: ${colors.orange500};
-      }
-      &:nth-of-type(3) {
-        color: ${colors.purple500};
-      }
-      &:nth-of-type(4) {
-        color: ${colors.green500};
-      }
-      &:nth-of-type(5) {
-        color: ${colors.teal500};
-      }
-
-      &:hover {
-        cursor: pointer;
-        transition: all 100ms ease-in-out;
-
-        &:nth-of-type(1) {
-          color: ${colors.blue600};
-          background-color: ${colors.blue200};
-        }
-        &:nth-of-type(2) {
-          color: ${colors.orange600};
-          background-color: ${colors.orange200};
-        }
-        &:nth-of-type(3) {
-          color: ${colors.purple600};
-          background-color: ${colors.purple200};
-        }
-        &:nth-of-type(4) {
-          color: ${colors.green600};
-          background-color: ${colors.green200};
-        }
-        &:nth-of-type(5) {
-          color: ${colors.teal600};
-          background-color: ${colors.teal200};
-        }
-      }
-    }
+  hr {
+    margin-top: 2em;
+    border-style: solid;
+    color: rgba(0, 0, 0, 0.2);
   }
 `;
 
-const Section = styled("div")`
-  margin-bottom: 10em;
-  display: flex;
-  flex-direction: column;
+const LinksWrapper = styled.div`
+  display: block;
+  font-size: 1.5em;
+  text-align: center;
 
-  @media (max-width: ${dimensions.maxwidthTablet}px) {
-    margin-bottom: 4em;
-  }
-
-  &:last-of-type {
-    margin-bottom: 0;
-  }
-`;
-
-const WorkAction = styled(Link)`
-  font-weight: 600;
-  text-decoration: none;
-  color: currentColor;
-  transition: all 150ms ease-in-out;
-  margin-left: auto;
-
-  @media (max-width: ${dimensions.maxwidthTablet}px) {
-    margin: 0 auto;
-  }
-
-  span {
-    margin-left: 1em;
-    transform: translateX(-8px);
-    display: inline-block;
-    transition: transform 400ms ease-in-out;
-  }
-
-  &:hover {
-    color: ${colors.blue500};
-    transition: all 150ms ease-in-out;
-
-    span {
-      transform: translateX(0px);
-      opacity: 1;
-      transition: transform 150ms ease-in-out;
-    }
+  a {
+    margin: 0.25em;
+    text-decoration: none;
+    color: inherit;
+    transition: 0.1s;
   }
 `;
 
-const RenderBody = ({ home, meta }) => (
+const Bio = styled.div`
+  max-width: 60ch;
+  margin: auto;
+  text-align: center;
+  font-weight: 400;
+
+  a {
+    text-decoration: underline;
+    color: inherit;
+  }
+`;
+
+const RenderBody = ({ meta }) => (
   <>
     <Helmet
       title={meta.title}
-      titleTemplate={`%s | ${meta.title}`}
+      titleTemplate={`${meta.title}`}
       meta={[
         {
           name: `description`,
@@ -146,7 +82,7 @@ const RenderBody = ({ home, meta }) => (
         },
         {
           name: `twitter:creator`,
-          content: meta.author,
+          content: meta.twitterUsername,
         },
         {
           name: `twitter:title`,
@@ -159,52 +95,47 @@ const RenderBody = ({ home, meta }) => (
       ].concat(meta)}
     />
     <Hero>
-      <div>
-        <h1>👋 Hi, I'm Jong Min </h1>
-        <h1>
-          <div>
-            📚 I am a sophomore at the{" "}
-            <a href="https://upenn.edu/" target="_blank" rel="noopener">
-              University of Pennsylvania
-            </a>{" "}
-            as part of the{" "}
-            <a
-              href="https://fisher.wharton.upenn.edu/"
-              target="_blank"
-              rel="noopener"
-            >
-              M&T
-            </a>{" "}
-            dual-degree program majoring in{" "}
-            <a href="https://www.cis.upenn.edu/" target="_blank" rel="noopener">
-              Computer Science
-            </a>{" "}
-            from Penn Engineering and{" "}
-            <a
-              href="https://mgmt.wharton.upenn.edu/"
-              target="_blank"
-              rel="noopener"
-            >
-              Management
-            </a>{" "}
-            from the Wharton School
-          </div>
-        </h1>
-        <h1>
-          🖥 I aspire to use technology to build products that solve problems
-        </h1>
-      </div>
+      <h1>Jong Min Choi </h1>
+      <h3>Computer Science + Management @ M&T</h3>
+
+      <LinksWrapper>
+        <a href="https://github.com/01jongmin/">
+          <FontAwesomeIcon icon={faGithub} />
+        </a>
+        <a href="https://www.linkedin.com/in/jong-min-choi">
+          <FontAwesomeIcon icon={faLinkedinIn} />
+        </a>
+        <a href="mailto: jongmin@seas.upenn.edu">
+          <FontAwesomeIcon icon={faEnvelope} />
+        </a>
+      </LinksWrapper>
+      <hr />
     </Hero>
+    <Bio>
+      <p>
+        Hi, I’m Jong Min. I am a sophomore at the University of Pennsylvania as
+        part of the 
+        <a href="https://fisher.wharton.upenn.edu/">
+          Management & Technology
+        </a>{" "}
+        dual-degree program majoring in Computer Science from Penn Engineering
+        and Management from the Wharton School
+      </p>
+      <p>
+        I work as an iOS developer at{" "}
+        <a href="https://pennlabs.org">Penn Labs</a> and as a Teaching Assistant
+        for the{" "}
+        <a href="https://www.seas.upenn.edu/~cis121/current/">
+          Data Structures and Algorithms
+        </a>{" "}
+        course at Penn
+      </p>
+    </Bio>
   </>
 );
 
 export default ({ data }) => {
-  //Required check for no data being returned
-  //const doc = data.prismic.allHomepages.edges.slice(0, 1).pop();
-  //const projects = data.prismic.allProjects.edges;
   const meta = data.site.siteMetadata;
-
-  //if (!doc || !projects) return null;
 
   return <Layout>{<RenderBody meta={meta} />}</Layout>;
 };
@@ -216,6 +147,7 @@ export const query = graphql`
         title
         description
         author
+        twitterUsername
       }
     }
   }
