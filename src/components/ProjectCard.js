@@ -37,7 +37,7 @@ const ProjectCardBlurb = styled("div")`
   margin-top: 0.5em;
 
   @media (max-width: 1000px) {
-    margin-bottom: 2.5em;
+    margin-bottom: 1em;
   }
 `;
 
