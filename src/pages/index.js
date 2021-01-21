@@ -6,6 +6,7 @@ import Layout from "../components/Layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
+import resume from "../../static/resume.pdf";
 
 const Hero = styled("div")`
   margin: auto;
@@ -128,7 +129,7 @@ const RenderBody = ({ meta }) => (
         <a href="https://www.seas.upenn.edu/~cis121/current/">
           Data Structures and Algorithms
         </a>{" "}
-        course at Penn
+        course at Penn. You can find my resume <a href={resume}>here</a>.
       </p>
     </Bio>
   </>

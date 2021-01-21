@@ -29,7 +29,7 @@ const HeaderContent = styled("div")`
 
 const HeaderLinks = styled("div")`
   display: grid;
-  grid-template-columns: repeat(2, auto);
+  grid-template-columns: repeat(1, auto);
   grid-gap: 7em;
   justify-content: flex-end;
   width: 100%;
@@ -88,9 +88,9 @@ export default function Header() {
           <Link activeClassName="Link--is-active" to="/work">
             Work
           </Link>
-          <Link activeClassName="Link--is-active" to="/courses">
+          {/*<Link activeClassName="Link--is-active" to="/courses">
             Courses
-          </Link>
+          </Link>*/}
         </HeaderLinks>
       </HeaderContent>
     </HeaderContainer>
