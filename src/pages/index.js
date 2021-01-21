@@ -4,9 +4,12 @@ import { graphql } from "gatsby";
 import styled from "@emotion/styled";
 import Layout from "../components/Layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import resume from "../../static/resume.pdf";
+
+//config.autoAddCss = false;
 
 const Hero = styled("div")`
   margin: auto;

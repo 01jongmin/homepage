@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import dimensions from "styles/dimensions";
 import colors from "styles/colors";
-import PropTypes from "prop-types";
 
 const ProjectCardContainer = styled.div`
   display: grid;

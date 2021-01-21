@@ -2,7 +2,6 @@ import React from "react";
 import Helmet from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 import Img from "gatsby-image";
-import styled from "@emotion/styled";
 import Layout from "components/Layout";
 import ProjectCard from "components/ProjectCard";
 import Carousel from "react-material-ui-carousel";
