@@ -108,12 +108,16 @@ const Work = () => {
           description={`Penn Mobile serves over 2000 weekly, 5000 monthly users in the Penn 
             community to do anything from check dining hours & menus, book study rooms, and much more!
             `}
-          role={`I implemented a screen that requires authentication using Local Authentication to
-                retrieves user's student card PIN code as well as 
-                spearheaded the dining redesign efforts in SwiftUI.`}
+          role={`I spearheaded the dining redesign effors in SwiftUI and set up the necessary
+          infrastructure for the integration of this new framework amongst our existing codebase written
+          in UIKit.
+          
+          I also implemented a screen that requires FaceID to retrieve students' Penn Access Code using 
+          Local Authentication.
+          `}
           others={
             <>
-              You can find the repository{" "}
+              You can find the repository for this app{" "}
               <a
                 href={"https://github.com/pennlabs/penn-mobile-ios"}
                 style={{ color: "inherit", textDecoration: "underline" }}
@@ -170,16 +174,3 @@ const Work = () => {
 export default () => {
   return <Work />;
 };
-//<ProjectCard
-//category={"Research"}
-//title={"Intel ISEF"}
-//description={`Penn Mobile is an app with over 2000 weekly, 5000 monthly users that helps the Penn
-//community do anything from check dining hours & menus, book study rooms, and much more!
-//`}
-//>
-//<Carousel autoPlay={false} indicators={true}>
-//{items.map((item) => (
-//<img src={item} />
-//))}
-//</Carousel>
-//</ProjectCard>
