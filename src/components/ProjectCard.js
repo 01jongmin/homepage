@@ -8,31 +8,19 @@ const ProjectCardContainer = styled.div`
   display: grid;
   grid-template-columns: 6fr 7fr;
   text-align: left;
-  color: currentColor;
+  max-height: 40%;
 
-  @media (max-width: 950px) {
-    grid-template-columns: 4.5fr 7fr;
-  }
-
-  @media (max-width: ${dimensions.maxwidthTablet}px) {
+  @media (max-width: 1000px) {
     grid-template-columns: 1fr;
-  }
-
-  @media (max-width: ${dimensions.maxwidthMobile}px) {
-    margin-bottom: 2em;
   }
 `;
 
 const ProjectCardContent = styled("div")`
-  background: white;
   padding: 4em 3em 2.25em 3em;
 
-  @media (max-width: 950px) {
-    padding: 1.25em 2.5em 2em 2.5em;
-  }
-
-  @media (max-width: ${dimensions.maxwidthTablet}px) {
+  @media (max-width: 1000px) {
     grid-row: 2;
+    padding: 1.25em 2.5em 1.25em 2.5em;
   }
 `;
 
@@ -49,35 +37,42 @@ const ProjectCardTitle = styled("h3")`
 const ProjectCardBlurb = styled("div")`
   margin-bottom: 0.5em;
   margin-top: 0.5em;
-  margin-bottom: 5em;
 
-  @media (max-width: ${dimensions.maxwidthTablet}px) {
+  @media (max-width: 1000px) {
     margin-bottom: 2.5em;
   }
 `;
 
+//padding: 4em 3em 2.25em 3em;
+//padding: 4em 3em 0em 3em;
 const ProjectCardImageContainer = styled("div")`
-  display: flex;
-  padding: 4em 3em 2.25em 3em;
-  max-width: 100%;
+  padding-top: 4em;
+  padding-right: 3em;
+  align-items: center;
 
-  @media (max-width: ${dimensions.maxwidthTablet}px) {
+  @media (max-width: 1000px) {
+    padding-top: 0.5em;
+    padding-right: 2.5em;
+    padding-left: 2.5em;
     flex-direction: column;
-    align-items: center;
-    padding: 4em 3em 0em 3em;
-  }
-
-  img {
-    max-width: 100%;
   }
 `;
 
-const ProjectCard = ({ category, title, description, thumbnail, children }) => (
+const ProjectCard = ({
+  category,
+  title,
+  description,
+  role,
+  others,
+  children,
+}) => (
   <ProjectCardContainer>
     <ProjectCardContent className="ProjectCardContent">
       <ProjectCardCategory>{category}</ProjectCardCategory>
       <ProjectCardTitle>{title}</ProjectCardTitle>
       <ProjectCardBlurb>{description}</ProjectCardBlurb>
+      <ProjectCardBlurb>{role}</ProjectCardBlurb>
+      {others}
     </ProjectCardContent>
     <ProjectCardImageContainer className="ProjectCardImageContainer">
       {children}
@@ -86,9 +81,3 @@ const ProjectCard = ({ category, title, description, thumbnail, children }) => (
 );
 
 export default ProjectCard;
-
-ProjectCard.propTypes = {
-  category: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-};

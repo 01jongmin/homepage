@@ -1,17 +1,66 @@
 import React from "react";
 import Helmet from "react-helmet";
-import { graphql } from "gatsby";
+import { useStaticQuery, graphql } from "gatsby";
+import Img from "gatsby-image";
 import styled from "@emotion/styled";
 import Layout from "components/Layout";
 import ProjectCard from "components/ProjectCard";
 import Carousel from "react-material-ui-carousel";
+import isefPaper from "../../static/isef.pdf";
 
-const WorkTitle = styled("h1")`
-  margin-bottom: 1em;
-`;
+const Work = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      iphone: allFile(
+        filter: {
+          extension: { regex: "/(jpg)|(png)|(jpeg)/" }
+          relativeDirectory: { eq: "iphone" }
+        }
+        sort: { order: ASC, fields: [name] }
+      ) {
+        edges {
+          node {
+            base
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
+      }
+      isef: allFile(
+        filter: {
+          extension: { regex: "/(jpg)|(png)|(jpeg)/" }
+          relativeDirectory: { eq: "isef" }
+        }
+        sort: { order: ASC, fields: [name] }
+      ) {
+        edges {
+          node {
+            base
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
+      }
+      site {
+        siteMetadata {
+          title
+          description
+          author
+          twitterUsername
+        }
+      }
+    }
+  `);
 
-const Work = ({ projects, meta }) => {
-  const items = ["../../1.jpg", "../../2.jpg", "../../3.jpg"];
+  const pennMobile = data.iphone.edges;
+  const isef = data.isef.edges;
+  const meta = data.site.siteMetadata;
 
   return (
     <>
@@ -57,26 +106,60 @@ const Work = ({ projects, meta }) => {
         <ProjectCard
           category={"Software Engineering"}
           title={"Penn Mobile"}
-          description={`Penn Mobile is an app with over 2000 weekly, 5000 monthly users that helps the Penn 
-            community do anything from check dining hours & menus, book study rooms, and much more!
+          description={`Penn Mobile serves over 2000 weekly, 5000 monthly users in the Penn 
+            community to do anything from check dining hours & menus, book study rooms, and much more!
             `}
+          role={`I implemented a screen that requires authentication using Local Authentication to
+                retrieves user's student card PIN code as well as 
+                spearheaded the dining redesign efforts in SwiftUI.`}
+          others={
+            <>
+              You can find the repository{" "}
+              <a
+                href={"https://github.com/pennlabs/penn-mobile-ios"}
+                style={{ color: "inherit", textDecoration: "underline" }}
+              >
+                here
+              </a>{" "}
+              .
+            </>
+          }
         >
-          <Carousel autoPlay={false}>
-            {items.map((item) => (
-              <img src={item} />
+          <Carousel autoPlay={false} indicators={true}>
+            {pennMobile.map((image) => (
+              <Img
+                fluid={image.node.childImageSharp.fluid}
+                alt={image.node.base.split(".")[0]} // only use section of the file extension with the filename
+              />
             ))}
           </Carousel>
         </ProjectCard>
         <ProjectCard
           category={"Research"}
           title={"Intel ISEF"}
-          description={`Penn Mobile is an app with over 2000 weekly, 5000 monthly users that helps the Penn 
-            community do anything from check dining hours & menus, book study rooms, and much more!
-            `}
+          description={`Intel ISEF is the world's largest international pre-college science competition.`}
+          role={`I represented Hong Kong as one of six projects with my research into Dye-Sensitized Solar Cells
+              at the 70th annual competition.`}
+          others={
+            <>
+              You can read my paper{" "}
+              <a
+                href={isefPaper}
+                style={{ color: "inherit", textDecoration: "underline" }}
+              >
+                {" "}
+                here
+              </a>
+              .
+            </>
+          }
         >
-          <Carousel autoPlay={false}>
-            {items.map((item) => (
-              <img src={item} />
+          <Carousel autoPlay={false} indicators={true}>
+            {isef.map((image) => (
+              <Img
+                fluid={image.node.childImageSharp.fluid}
+                alt={image.node.base.split(".")[0]} // only use section of the file extension with the filename
+              />
             ))}
           </Carousel>
         </ProjectCard>
@@ -85,21 +168,19 @@ const Work = ({ projects, meta }) => {
   );
 };
 
-export default ({ data }) => {
-  const meta = data.site.siteMetadata;
-
-  return <Work meta={meta} />;
+export default () => {
+  return <Work />;
 };
-
-export const query = graphql`
-  {
-    site {
-      siteMetadata {
-        title
-        description
-        author
-        twitterUsername
-      }
-    }
-  }
-`;
+//<ProjectCard
+//category={"Research"}
+//title={"Intel ISEF"}
+//description={`Penn Mobile is an app with over 2000 weekly, 5000 monthly users that helps the Penn
+//community do anything from check dining hours & menus, book study rooms, and much more!
+//`}
+//>
+//<Carousel autoPlay={false} indicators={true}>
+//{items.map((item) => (
+//<img src={item} />
+//))}
+//</Carousel>
+//</ProjectCard>
